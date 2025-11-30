@@ -1,6 +1,6 @@
 services:
   neo4j:
-    image: neo4j:5.25-community
+    image: neo4j:5.26.17-community
     container_name: neo4j
     platform: linux/amd64 # uncomment on Apple Silicon if needed
     restart: unless-stopped
@@ -15,6 +15,7 @@ services:
     volumes:
       - neo4j_data:/data
       - neo4j_logs:/logs
+      - ./neo4j/init:/var/lib/neo4j/import/init
     healthcheck:
       test:
         [
@@ -24,6 +25,22 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
+
+  neo4j-migrations:
+    image: neo4j:5.26.17-community
+    container_name: neo4j-migrations
+    platform: linux/amd64 # uncomment on Apple Silicon if needed
+    depends_on:
+      neo4j:
+        condition: service_healthy
+    environment:
+      NEO4J_HOST: neo4j
+      NEO4J_USER: ${NEO4J_USER}
+      NEO4J_PASSWORD: ${NEO4J_PASSWORD}
+    volumes:
+      - ./neo4j/init:/migrations
+    entrypoint: ["/bin/bash", "/migrations/run_migrations.sh"]
+    restart: "no"
 
   backend:
     build:
@@ -53,7 +70,7 @@ services:
     ports:
       - "3000:5173"
     environment:
-      - VITE_API_BASE_URL=http://localhost:8000
+      - VITE_API_BASE_URL=http://localhost:${API_PORT}
     depends_on:
       - backend
 
