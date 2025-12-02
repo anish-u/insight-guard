@@ -1,5 +1,5 @@
 {
-  "name": "insight-guard-frontend",
+  "name": "insightguard-frontend",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,7 +10,8 @@
   "dependencies": {
     "lucide-react": "^0.446.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",

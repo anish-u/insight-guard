@@ -4,10 +4,6 @@ CREATE CONSTRAINT monthly_dhs_web_app_unique IF NOT EXISTS
 FOR (a:MonthlyDHSWebApp)
 REQUIRE a.app_id IS UNIQUE;
 
-CREATE CONSTRAINT monthly_dhs_web_endpoint_unique IF NOT EXISTS
-FOR (e:MonthlyDHSWebEndpoint)
-REQUIRE e.endpoint_id IS UNIQUE;
-
 CREATE CONSTRAINT monthly_dhs_web_vuln_unique IF NOT EXISTS
 FOR (v:MonthlyDHSWebVulnerability)
 REQUIRE v.web_vuln_id IS UNIQUE;

@@ -9,5 +9,4 @@ def setup_logging() -> None:
     handlers=[logging.StreamHandler(sys.stdout)],
   )
 
-  # Example: quiet noisy loggers here if needed
   logging.getLogger("uvicorn.access").setLevel(logging.INFO)

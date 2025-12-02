@@ -22,5 +22,5 @@ async def health(driver: Driver = Depends(driver_dependency)):
       if record and record["ok"] == 1:
         return {"status": "ok", "neo4j": "connected"}
       return {"status": "degraded", "neo4j": "unexpected_response"}
-  except Exception as exc:  # noqa: BLE001
+  except Exception as exc:
     return {"status": "error", "neo4j": f"connection_failed: {exc}"}

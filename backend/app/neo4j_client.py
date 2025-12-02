@@ -39,5 +39,4 @@ async def close_driver() -> None:
 
 @lru_cache(maxsize=1)
 def driver_dependency() -> Driver:
-  # FastAPI dependency (non-async), uses cached driver
   return get_driver()

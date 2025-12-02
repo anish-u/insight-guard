@@ -16,6 +16,12 @@ class Settings(BaseSettings):
     description="Allowed origins for CORS",
   )
 
+  upload_base_dir: str = Field(
+    default="/data/uploads",
+    alias="UPLOAD_BASE_DIR",
+    description="Base directory for storing uploaded CSV files",
+  )
+
   class Config:
     env_file = ".env"
     env_file_encoding = "utf-8"
