@@ -6,6 +6,8 @@ from .logging_config import setup_logging
 from .neo4j_client import init_driver, close_driver
 from .api.routes_root import router as root_router
 from .api.routes_ingest import router as ingest_router
+from .api.routes_dashboard import router as dashboard_router
+from .api.routes_weekly_analytics import router as weekly_analytics_router
 
 
 setup_logging()
@@ -37,3 +39,5 @@ async def on_shutdown() -> None:
 
 app.include_router(root_router)
 app.include_router(ingest_router)
+app.include_router(dashboard_router)
+app.include_router(weekly_analytics_router)
